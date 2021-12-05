@@ -53,21 +53,23 @@ function getList(table) {
 
 function getAllUsersFullData() {
     return new Promise((resolve, reject) => {
-        connection.query(`SELECT
-        u.user_id,
-        u.user_name,
-        u.user_email,
-        d.department_id,
-        d.department_name,
-        wl.wish_name,
-        wl.wish_id,
-        wl.wish_price,
-        wl.wish_url,
-        wl.wish_image_url
-      FROM
-        users AS u
-        JOIN departments AS d
-        JOIN wish_list AS wl ON u.user_id = d.department_id;`, (err, data) => {
+        connection.query(`
+        SELECT
+          u.user_id,
+          u.user_name,
+          u.user_email,
+          u.user_description,
+          d.department_id,
+          d.department_name,
+          wl.wish_name,
+          wl.wish_id,
+          wl.wish_price,
+          wl.wish_image_url,
+          wl.wish_description
+        FROM
+          users AS u
+          JOIN departments AS d
+          JOIN wish_list AS wl ON u.user_id = d.department_id`, (err, data) => {
             if (err) return reject(err);
 
             resolve(data);
@@ -75,9 +77,11 @@ function getAllUsersFullData() {
     });
 }
 
-function getById(table, selection, {id}) {
+function getById(query) {
+
+    console.log(query)
     return new Promise((resolve, reject) => {
-        connection.query(`SELECT * FROM ${table} WHERE ${selection}_id = ${id}`, (err, data) => {
+        connection.query(query, (err, data) => {
             if (err) return reject(err);
             resolve(data);
         });

@@ -1,4 +1,4 @@
-const { TABLES } = require('../../../utils/constants.js');
+const { TABLES, QUERIES } = require('../../../utils/constants.js');
 
 const TABLE = TABLES.USERS;
 
@@ -7,8 +7,9 @@ const controller = (store) => {
         return store.getList(TABLE);
     };
 
-    const getById = (id) => {
-        return store.getById(TABLE, 'user', id);
+    const getById = ({id}) => {
+        console.log(`id`, id)
+        return store.getById(QUERIES.userById(id));
     };
 
     const insert = async(body) => {
