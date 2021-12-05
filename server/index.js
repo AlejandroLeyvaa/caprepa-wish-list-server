@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json({ limit: '15mb', extended: true }));
 app.use(express.urlencoded({ extended: true }))
 app.use(cors({
-    origin: 'http://localhost:4200'
+    origin: 'https://caprepa-gifts-list.netlify.app'
 }));
 
 
