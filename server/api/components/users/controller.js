@@ -8,7 +8,6 @@ const controller = (store) => {
     };
 
     const getById = ({id}) => {
-        console.log(`id`, id)
         return store.getById(QUERIES.userById(id));
     };
 

@@ -11,20 +11,13 @@ module.exports = {
       u.user_id,
       u.user_name,
       u.user_email,
-      u.user_description,
       u.user_image,
       d.department_id,
-      d.department_name,
-      wl.wish_name,
-      wl.wish_id,
-      wl.wish_price,
-      wl.wish_image_url,
-      wl.wish_description
+      d.department_name
     FROM
       users AS u
       JOIN departments AS d
-      JOIN wish_list AS wl ON u.user_id = d.department_id
-      WHERE u.user_id = ${id}`;
+      ON u.user_id = d.department_id AND u.user_id= ${id};`;
     },
   },
 };

@@ -78,8 +78,6 @@ function getAllUsersFullData() {
 }
 
 function getById(query) {
-
-    console.log(query)
     return new Promise((resolve, reject) => {
         connection.query(query, (err, data) => {
             if (err) return reject(err);

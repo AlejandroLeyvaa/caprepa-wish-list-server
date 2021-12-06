@@ -50,7 +50,6 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const user = await controller.getById(req.params);
-
     if (user.length) {
       res.send({
         valid: true,
@@ -97,7 +96,6 @@ router.put("/user-update", async (req, res, next) => {
       user_id,
       department_id,
       user_email,
-      // user_image,
       user_password,
     } = JSON.parse(JSON.stringify(body));
     let salt;
