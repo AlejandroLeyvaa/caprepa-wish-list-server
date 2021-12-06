@@ -94,24 +94,27 @@ router.put("/user-update", async (req, res, next) => {
     const {
       user_name,
       user_id,
+      user_description,
       department_id,
       user_email,
       user_password,
     } = JSON.parse(JSON.stringify(body));
+    let dataForUpdate = {
+      user_name,
+      user_id,
+      user_description,
+      department_id,
+      user_email,
+    };
+
     let salt;
     let hashedPassword;
+
     if (user_password) {
       salt = await bcrypt.genSalt(10);
       hashedPassword = await bcrypt.hash(user_password, salt);
+      dataForUpdate.user_password = hashedPassword;
     }
-
-    const dataForUpdate = {
-      user_name,
-      user_id,
-      department_id,
-      user_email,
-      user_password: hashedPassword || "",
-    };
 
     const user = await controller.update(dataForUpdate, user_id);
     res.send({
