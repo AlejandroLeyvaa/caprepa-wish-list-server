@@ -31,7 +31,6 @@ function handleConnection() {
 
     connection.on('error', (err) => {
         console.error(err);
-        cl
         if (err.code === 'PROTOCOL_CONNECTION_LOST') {
             handleConnection();
         } else {
