@@ -1,7 +1,6 @@
 const mysql = require('mysql');
 
 const config = require('../config/index.js');
-const { TABLES } = require('../utils/constants.js');
 
 const dbConfig = {
     host: config.mysql.host,
@@ -14,6 +13,8 @@ const dbConfig = {
 let connection;
 
 function handleConnection() {
+
+    console.log(`dbConfig`, dbConfig);
     if (dbConfig.password === undefined) {
         connection = mysql.createConnection(dbConfig);
     } else {
