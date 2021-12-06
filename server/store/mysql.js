@@ -14,7 +14,6 @@ let connection;
 
 function handleConnection() {
 
-    console.log(`dbConfig`, dbConfig);
     if (dbConfig.password === undefined) {
         connection = mysql.createConnection(dbConfig);
     } else {
@@ -32,14 +31,13 @@ function handleConnection() {
 
     connection.on('error', (err) => {
         console.error(err);
-        if (err.code === 'Connection error') {
+        cl
+        if (err.code === 'PROTOCOL_CONNECTION_LOST') {
             handleConnection();
         } else {
             throw err;
         }
     });
-    
-    connection.end();
 }
 
 handleConnection();

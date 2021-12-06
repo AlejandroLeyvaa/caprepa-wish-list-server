@@ -17,11 +17,12 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cors());
 
 
-app.use('/', (req, res, next) => {
-    res.send({
-        "Hello": "World",
-    })
-});
+// app.use('/', (req, res, next) => {
+//     res.send({
+//         "Hello": "World",
+//     })
+// });
+
 app.use(express.static('public'));
 app.use('/api/wish-list', wishList);
 app.use('/api/auth/users', users);
