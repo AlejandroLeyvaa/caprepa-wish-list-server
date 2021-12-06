@@ -28,6 +28,7 @@ const router = express.Router();
 router.get("/", async(req, res, next) => {
     try {
         const wishList = await controller.getList();
+
         if (wishList.length) {
             res.status(200).json({
                 data: wishList,
