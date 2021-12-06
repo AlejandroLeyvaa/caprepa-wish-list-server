@@ -48,6 +48,8 @@ router.get("/", async(req, res, next) => {
 router.get('/users-wish-list', async(req, res, next) => {
     try {
         const users = await controller.getAllUsersFullData();
+
+        console.log(`users`, users)
         if (users.length) {
             res.send({
                 valid: true,

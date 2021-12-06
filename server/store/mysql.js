@@ -65,6 +65,7 @@ function getAllUsersFullData() {
           wl.wish_id,
           wl.wish_price,
           wl.wish_image_url,
+          wl.wish_url,
           wl.wish_description
         FROM
           users AS u

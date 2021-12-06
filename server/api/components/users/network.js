@@ -74,6 +74,7 @@ router.put(
   async (req, res, next) => {
     try {
       const { body, file } = req;
+      console.log(`body`, file, body) 
       const { user_id } = body;
       if (file) {
         const data = {
