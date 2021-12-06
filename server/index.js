@@ -19,7 +19,7 @@ app.use(cors());
 
 app.use('/', (req, res, next) => {
     res.send({
-        "Hello": "Wolrd",
+        "Hello": "World",
     })
 });
 app.use(express.static('public'));

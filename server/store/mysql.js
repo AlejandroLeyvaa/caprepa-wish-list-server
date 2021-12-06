@@ -24,7 +24,7 @@ function handleConnection() {
     connection.connect((err) => {
         if (err) {
             console.error(err);
-            setTimeout(handleConnection, 2000);
+            setTimeout(handleConnection(), 2000);
         } else {
             console.log('DB Connected');
         }
@@ -38,6 +38,8 @@ function handleConnection() {
             throw err;
         }
     });
+    
+    connection.end();
 }
 
 handleConnection();
