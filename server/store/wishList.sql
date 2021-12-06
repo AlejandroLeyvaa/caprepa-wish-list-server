@@ -41,7 +41,7 @@ VALUES
 INSERT INTO
   departments(department_name)
 VALUES
-  ('');
+  ('Sistemas');
 
 -- JOINS
 select

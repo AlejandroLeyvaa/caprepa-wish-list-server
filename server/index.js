@@ -11,9 +11,10 @@ const app = express();
 
 app.use(express.json({ limit: '15mb', extended: true }));
 app.use(express.urlencoded({ extended: true }))
-app.use(cors({
-    origin: 'https://caprepa-gifts-list.netlify.app'
-}));
+// app.use(cors({
+//     origin: 'https://caprepa-gifts-list.netlify.app',
+// }));
+app.use(cors());
 
 
 app.use(express.static('public'));
