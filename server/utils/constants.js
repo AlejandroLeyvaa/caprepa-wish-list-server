@@ -17,7 +17,7 @@ module.exports = {
     FROM
       users AS u
       JOIN departments AS d
-      ON u.user_id = d.department_id AND u.user_id= ${id};`;
+      ON u.user_id=${id};`;
     },
   },
 };

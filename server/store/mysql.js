@@ -55,22 +55,21 @@ function getAllUsersFullData() {
     return new Promise((resolve, reject) => {
         connection.query(`
         SELECT
-          u.user_id,
+u.user_id,
           u.user_name,
           u.user_email,
           u.user_description,
-          d.department_id,
-          d.department_name,
           wl.wish_name,
           wl.wish_id,
+          wl.user_id,
           wl.wish_price,
           wl.wish_image_url,
           wl.wish_url,
-          wl.wish_description
-        FROM
-          users AS u
-          JOIN departments AS d
-          JOIN wish_list AS wl ON u.user_id = d.department_id`, (err, data) => {
+          wl.wish_description        
+        
+        FROM wish_list AS wl
+        INNER JOIN users AS u ON wl.user_id=u.user_id;
+          `, (err, data) => {
             if (err) return reject(err);
 
             resolve(data);

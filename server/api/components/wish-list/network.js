@@ -49,7 +49,6 @@ router.get('/users-wish-list', async(req, res, next) => {
     try {
         const users = await controller.getAllUsersFullData();
 
-        console.log(`users`, users)
         if (users.length) {
             res.send({
                 valid: true,
@@ -75,7 +74,10 @@ router.post("/", upload.single("wish-image"), async(req, res, next) => {
             const { wish_name, wish_price, user_id, wish_description, wish_url } = JSON.parse(
                 JSON.stringify(body)
             );
-            const data = {
+
+            console.log(`wish_price`, wish_price);
+
+            let data = {
                 user_id,
                 wish_name,
                 wish_description,
@@ -83,6 +85,12 @@ router.post("/", upload.single("wish-image"), async(req, res, next) => {
                 wish_price: parseInt(wish_price),
                 wish_image_url: `assets/images/${file.originalname}`,
             };
+
+            if(parseInt(wish_price) === NaN) {
+                data.wish_price = 0;   
+            }
+
+            console.log(`data`, data);
             const wishList = await controller.insert(data);
 
             res.send({

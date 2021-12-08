@@ -50,6 +50,7 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const user = await controller.getById(req.params);
+
     if (user.length) {
       res.send({
         valid: true,
@@ -74,7 +75,6 @@ router.put(
   async (req, res, next) => {
     try {
       const { body, file } = req;
-      console.log(`body`, file, body) 
       const { user_id } = body;
       if (file) {
         const data = {
@@ -172,6 +172,7 @@ router.post("/sign-up", async (req, res, next) => {
 router.post("/login", async (req, res, next) => {
   try {
     const { body } = req;
+
     const secondsInOneMonth = 1000 * 60 * 60 * 24 * 30;
 
     const { user_name, user_email, user_password } = await JSON.parse(
@@ -198,7 +199,7 @@ router.post("/login", async (req, res, next) => {
     if (correctPassword) {
       const token = jwt.sign(
         {
-          user_name,
+          user_name: userFiltered[0].user_name,
           user_admin: 0,
           id: userFiltered[0].user_id,
           user_email,
@@ -215,7 +216,7 @@ router.post("/login", async (req, res, next) => {
         message: "Usuario autorizado",
         token: token,
         data: {
-          user_name,
+          user_name: userFiltered[0].user_name,
           user_email,
           user_id: storedUserId,
         },
